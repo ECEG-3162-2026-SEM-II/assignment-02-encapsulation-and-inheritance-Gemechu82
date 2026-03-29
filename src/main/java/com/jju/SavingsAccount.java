@@ -1,18 +1,17 @@
-package com.jju;
+public class CheckingAccount extends BankAccount {
+    private static final double TRANSACTION_FEE = 1.50;
 
-public class SavingsAccount extends BankAccount {
-    private double interestRate; 
-
-  // 1. Student Task: Create constructor here 
-    
-
-    public void applyInterest() {
-        // 2. Student Task: Implement interest application logic here
-        
+    public CheckingAccount(String accountHolder, double initialBalance) {
+        super(accountHolder, initialBalance);
     }
 
-  // 3. Student Task: Create getter for interestRate here
-    
-    
+    @Override
+    public void withdraw(double amount) {
+        double total = amount + TRANSACTION_FEE;
+
+        if (amount > 0 && balance >= total) {
+            super.withdraw(total); // reuse parent logic
+        }
+    }
 }
 
